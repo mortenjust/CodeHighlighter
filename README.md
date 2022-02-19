@@ -12,6 +12,8 @@ This package adds
 * Safe selection of themes via enum
 * Dark mode detection
 
+## Installation
+Add this repo's URL to your project's package dependences.
 
 ## Usage
 
