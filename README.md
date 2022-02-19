@@ -9,6 +9,7 @@ Since we're using `AttributedString`, this package requires macOS 12 or iOS 15.
 This package adds
 
 * SwiftUI view for syntax coloring
+* Safe selection of themes via enum
 * Dark mode detection
 
 
