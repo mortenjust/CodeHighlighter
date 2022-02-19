@@ -52,9 +52,3 @@ public struct CodeTextView: View {
         
     }
 }
-
-struct CodeView_Previews: PreviewProvider {
-    static var previews: some View {
-        CodeTextView("let a = b(\"Here we are\");")
-    }
-}
