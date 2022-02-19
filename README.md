@@ -14,8 +14,14 @@ This package adds
 
 
 ## Usage
+
 ```swift
 CodeTextView("let a = b(\"Here we are\");")
+
+CodeTextView("console.log(\"hello highlight\");",
+             language: "javascript",
+             lightTheme: .solarizedLight,
+             darkTheme: .solarizedDark)
 
 ```
 
