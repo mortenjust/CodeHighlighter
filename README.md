@@ -13,7 +13,8 @@ This package adds
 * Dark mode detection
 
 ## Installation
-Add this repo's URL to your project's package dependences.
+Add this repo's URL to your project's package dependencies:
+https://github.com/mortenjust/CodeHighlighter
 
 ## Usage
 
