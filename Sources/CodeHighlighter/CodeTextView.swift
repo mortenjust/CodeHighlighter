@@ -33,14 +33,18 @@ public struct CodeTextView: View {
         self.lightTheme = lightTheme
         self.darkTheme = darkTheme
     }
-    
+
+
     var highlighter = Highlightr()
-    
+
     var coded : AttributedString {
         highlighter?.setTheme(to: colorScheme == .dark ? darkTheme.rawValue : lightTheme.rawValue)
+        
         guard let nsatt = highlighter?.highlight(code, as: language)
         else { return "" }
-        let att = AttributedString(nsatt)
+        var att = AttributedString(nsatt)
+        att.font = .custom("FiraCodeRoman-Regular", size: 16) // FiraCodeRoman-Regular, CascadiaMonoPL-Italic, CascadiaMonoPLRoman-ExtraLight, CascadiaMonoPLRoman-SemiLight
+        att.inlinePresentationIntent = .code
         return att
     }
     
