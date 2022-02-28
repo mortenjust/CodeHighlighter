@@ -40,7 +40,14 @@ public struct CodeTextView: View {
     var coded : AttributedString {
         highlighter?.setTheme(to: colorScheme == .dark ? darkTheme.rawValue : lightTheme.rawValue)
         
-        guard let nsatt = highlighter?.highlight(code, as: language)
+        var lang = language
+        
+        if !highlighter!.supportedLanguages().contains(language.lowercased()) {
+            lang = "javascript"
+        }
+        
+        
+        guard let nsatt = highlighter?.highlight(code, as: lang)
         else { return "" }
         var att = AttributedString(nsatt)
         att.font = .custom("FiraCodeRoman-Regular", size: 16) // FiraCodeRoman-Regular, CascadiaMonoPL-Italic, CascadiaMonoPLRoman-ExtraLight, CascadiaMonoPLRoman-SemiLight
