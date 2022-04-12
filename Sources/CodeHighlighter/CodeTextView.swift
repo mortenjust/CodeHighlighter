@@ -21,7 +21,9 @@ public struct CodeTextView: View {
     var lightTheme : HighlighterTheme = .atomOneLight
     var darkTheme : HighlighterTheme = .atomOneDark
     let showCaret : Bool
-    let fontSize : Double 
+    let fontSize : Double
+    var caretImage : Image = Image(systemName: "rectangle.portrait.fill")
+    var caretColor : Color = .blue
     
     @Environment(\.colorScheme) var colorScheme
     
@@ -61,10 +63,20 @@ public struct CodeTextView: View {
         return att
     }
     
+    var finalText : Text {
+        var elements = [ Text ]()
+        if showCaret {
+            elements.append(Text(caretImage)
+                .foregroundColor(.blue))
+        }
+        return elements.reduce(Text(coded)) { $0 + $1 }
+    }
+    
     public var body: some View {
         VStack {
-            Text(coded) + (Text(showCaret ? "|█" : "").foregroundColor(.blue).font(.system(size: fontSize).bold()))
-//                .textSelection(.enabled)
+            finalText
+                .lineSpacing(4)
+
         }
         
     }
@@ -75,3 +87,4 @@ struct CodeText_Previews : PreviewProvider {
         CodeTextView("let a = 2")
     }
 }
+
