@@ -18,8 +18,6 @@ public struct CodeTextView: View {
     
     var code : String = ""
     var language : String = ""
-    var lightTheme : HighlighterTheme = .atomOneLight
-    var darkTheme : HighlighterTheme = .atomOneDark
     let showCaret : Bool
     let fontSize : Double
     var caretImage : Image = Image(systemName: "rectangle.portrait.fill")
@@ -36,8 +34,6 @@ public struct CodeTextView: View {
         
         self.code = code
         self.language = language
-        self.lightTheme = lightTheme
-        self.darkTheme = darkTheme
         self.showCaret = showCaret
         self.fontSize = fontSize
     }
@@ -46,21 +42,8 @@ public struct CodeTextView: View {
     var highlighter = Highlightr()
 
     var coded : AttributedString {
-        highlighter?.setTheme(to: colorScheme == .dark ? darkTheme.rawValue : lightTheme.rawValue)
         
-        var lang = language
-        
-        if !highlighter!.supportedLanguages().contains(language.lowercased()) {
-            lang = "javascript"
-        }
-        
-        
-        guard let nsatt = highlighter?.highlight(code, as: lang)
-        else { return "" }
-        var att = AttributedString(nsatt)
-        att.font = .custom("FiraCodeRoman-Regular", size: fontSize) // FiraCodeRoman-Regular, CascadiaMonoPL-Italic, CascadiaMonoPLRoman-ExtraLight, CascadiaMonoPLRoman-SemiLight
-        att.inlinePresentationIntent = .code
-        return att
+        code.syntaxHighlight(colorScheme: colorScheme, language: language, fontSize: fontSize)
     }
     
     var finalText : Text {
@@ -88,3 +71,26 @@ struct CodeText_Previews : PreviewProvider {
     }
 }
 
+extension String {
+    
+    /// Returns a modern AttributedString syntax highlighted
+    public func syntaxHighlight(colorScheme: ColorScheme, language: String, fontSize: Double) -> AttributedString {
+        let highlighter = Highlightr()!
+        
+        highlighter.setTheme(to: colorScheme == .dark
+                             ? HighlighterTheme.atomOneDark.rawValue
+                             : HighlighterTheme.atomOneLight.rawValue)
+        
+        var lang = language.lowercased()
+        if !highlighter.supportedLanguages().contains(language) {
+                print("CHL: Falling back to javascript")
+            lang = "javascript"
+        }
+        guard let nsAtt = highlighter.highlight(self, as: lang) else { return "" }
+        
+        var att = AttributedString(nsAtt)
+        att.font = .custom("FiraCodeRoman-Regular", size: fontSize)
+        att.inlinePresentationIntent = .code
+        return att
+    }
+}
