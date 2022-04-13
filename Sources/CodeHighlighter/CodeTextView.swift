@@ -77,7 +77,7 @@ extension String {
         let highlighter = Highlightr()!
         
         highlighter.setTheme(to: colorScheme == .dark
-                             ? HighlighterTheme.atomOneDark.rawValue
+                             ? HighlighterTheme.darcula.rawValue
                              : HighlighterTheme.atomOneLight.rawValue)
         
         var lang = language.lowercased()
