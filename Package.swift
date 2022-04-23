@@ -3,6 +3,8 @@
 
 import PackageDescription
 
+// 0.2.0
+
 let package = Package(
     name: "CodeHighlighter",
     platforms: [.macOS(.v12), .iOS(.v15), .tvOS(.v15), .watchOS(.v8)],
