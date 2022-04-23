@@ -15,8 +15,8 @@ public extension String {
         let highlighter = Highlightr()!
         
         highlighter.setTheme(to: colorScheme == .dark
-                             ? HighlighterTheme.darcula.rawValue
-                             : HighlighterTheme.atomOneLight.rawValue)
+                             ? HighlighterTheme.xcodeDark.rawValue
+                             : HighlighterTheme.xcode.rawValue)
         
         var lang = language.lowercased()
         if !highlighter.supportedLanguages().contains(language) {
@@ -24,10 +24,15 @@ public extension String {
             lang = "javascript"
         }
         guard let nsAtt = highlighter.highlight(self, as: lang) else { return nil }
+        
+        // crap this resets the highlihgint
+//        let muta = NSMutableAttributedString(attributedString: nsAtt)
+//        muta.setAttributes([.font : NSFont.monospacedSystemFont(ofSize: fontSize, weight: .semibold)], range: NSRange(location: 0, length: muta.length))
+        
         return nsAtt
     }
     
-    /// Returns a modern AttributedString syntax highlighted
+    /// Returns a modern AttributedString syntax highlighted. Not used for streaming as we have to break up an nsattributed.. i think
     func syntaxHighlight(colorScheme: ColorScheme, language: String, fontSize: Double) -> AttributedString {
         guard let nsAtt = syntaxHighlightAsNSAttributedString(colorScheme: colorScheme, language: language, fontSize: fontSize) else { return "" }
         var att = AttributedString(nsAtt)

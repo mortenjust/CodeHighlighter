@@ -95,6 +95,7 @@ public enum HighlighterTheme: String {
   case vs = "vs"
   case vs2015 = "vs2015"
   case xcode = "xcode"
+  case xcodeDark = "xcode-dark"
   case xt256 = "xt256"
   case zenburn = "zenburn"
 }
