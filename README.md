@@ -1,5 +1,7 @@
 # CodeHighlighter
 
+Forked Highlightr.
+
 A SwiftUI view that automatically highlights code syntax using [Highlightr](https://github.com/raspu/Highlightr), which is using [highlight.js](https://highlightjs.org/) as it core, and supports [185 languages and comes with 89 styles](https://highlightjs.org/static/demo/). 
 
 Highlightr renders your syntax colored code as a string, no web views involved. This means your SwiftUI layout behaves like you'd expect it to, automatically reporting its frame, and no embedded scroll views. 
