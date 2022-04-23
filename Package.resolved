@@ -5,9 +5,9 @@
         "package": "Highlightr",
         "repositoryURL": "https://github.com/mortenjust/Highlightr",
         "state": {
-          "branch": null,
-          "revision": "93199b9e434f04bda956a613af8f571933f9f037",
-          "version": "2.1.2"
+          "branch": "master",
+          "revision": "26e97746b00f784c19174c6e96bf38805950e842",
+          "version": null
         }
       }
     ]
